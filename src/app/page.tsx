@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import TodoList from "./components/TodoList";
+import TodoHeader from "./components/TodoHeader";
 
 type Todo = {
   text: string;
@@ -39,48 +41,16 @@ export default function Home() {
 
   return (
     <main style={{ maxWidth: 400, margin: "40px auto", fontFamily: "sans-serif", background: "#b09494ff", padding: 20, borderRadius: 8 }}>
-      <h1 className={"title-header"}>Jobs for which my ass needs to apply</h1>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Add a new task"
-          style={{ flex: 1, padding: 8 }}
-        />
-        <button className={"bg-blue-500 add-remove-button"} onClick={addTodo}>Add</button>
-      </div>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {todos.map((todo, idx) => (
-          <li
-            key={idx}
-            style={{
-              background: "#f3f3f3",
-              marginBottom: 8,
-              padding: 10,
-              borderRadius: 4,
-              display: "flex",
-              alignItems: "center",
-              textDecoration: todo.done ? "line-through" : "none",
-              cursor: "pointer",
-              color: todo.done ? "#6d6d6dff" : "initial",
-              fontStyle: todo.done ? "italic" : "normal"
-            }}
-            onClick={() => toggleTodo(idx)}
-          >
-            <span style={{ flex: 1 }}>{todo.text}</span>
-            <button
-              className={"bg-pink-500 add-remove-button"}
-              style={{ marginLeft: 10 }}
-              onClick={e => {
-                e.stopPropagation();
-                removeTodo(idx);
-              }}
-            >
-              Remove
-            </button>
-          </li>
-        ))}
-      </ul>
+      <TodoHeader
+        input={input}
+        setInput={setInput}
+        addTodo={addTodo}
+      />
+      <TodoList
+        todos={todos}
+        toggleTodo={toggleTodo}
+        removeTodo={removeTodo}
+      />
     </main>
   );
 }
