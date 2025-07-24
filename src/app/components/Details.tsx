@@ -22,26 +22,20 @@ export default function Details({
             borderRadius: 4,
             display: "flex",
             flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            border: "1px solid #ccc",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+            width: "100%",
           }}
         >
-          <div>
-            <strong>Company:</strong> {detail.company}
-          </div>
-          <div>
-            <strong>URL:</strong> {detail.url || "N/A"}
-          </div>
-          <div>
-            <strong>Position:</strong> {detail.position}
-          </div>
-          <div>
-            <strong>Date Applied:</strong> {detail.dateApplied}
-          </div>
-          <div>
-            <strong>Notes:</strong> {detail.notes || "N/A"}
-          </div>
+          <div>{detail.company}</div>
+          <div>{detail.url || "N/A"}</div>
+          <div>{detail.position}</div>
+          <div>{detail.dateApplied}</div>
+          <div>{detail.notes || "N/A"}</div>
           <button
             className={"bg-pink-500 add-remove-button"}
-            style={{ marginTop: 10 }}
             onClick={() => removeJobDetails(idx)}
           >
             Remove
