@@ -17,6 +17,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("tab1");
   const [jobDetails, setJobDetails] = useState<JobDetails[]>([]);
   const [inputJobDetails, setInputJobDetails] = useState<JobDetails>({
+    id: "",
     company: "",
     url: "",
     position: "",
@@ -60,8 +61,18 @@ export default function Home() {
 
   const addJobDetails = () => {
     if (!inputJobDetails.company.trim()) return;
-    setJobDetails([...jobDetails, { ...inputJobDetails }]);
+
+    const newId =
+      inputJobDetails.company.trim().toLowerCase().replace(/\s+/g, "-") +
+      "-" +
+      inputJobDetails.position.trim().toLowerCase().replace(/\s+/g, "-") +
+      "-" +
+      inputJobDetails.dateApplied.trim().toLowerCase().replace(/\s+/g, "-") +
+      "-" +
+      Date.now();
+    setJobDetails([...jobDetails, { ...inputJobDetails, id: newId }]);
     setInputJobDetails({
+      id: "",
       company: "",
       url: "",
       position: "",
@@ -70,8 +81,8 @@ export default function Home() {
     });
   };
 
-  const removeJobDetails = (idx: number) => {
-    setJobDetails(jobDetails.filter((_, i) => i !== idx));
+  const removeJobDetails = (id: string) => {
+    setJobDetails(jobDetails.filter((_) => _.id !== id));
   };
 
   return (

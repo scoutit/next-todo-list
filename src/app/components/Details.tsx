@@ -3,7 +3,7 @@ import type { JobDetails } from "../types/JobDetails";
 
 type DetailsProperties = {
   jobDetails: JobDetails[];
-  removeJobDetails: (idx: number) => void;
+  removeJobDetails: (id: string) => void;
 };
 
 export default function Details({
@@ -12,9 +12,9 @@ export default function Details({
 }: DetailsProperties) {
   return (
     <ul style={{ listStyle: "none", padding: 0 }}>
-      {jobDetails.map((detail, idx) => (
+      {jobDetails.map((detail) => (
         <li
-          key={idx}
+          key={detail.id}
           style={{
             background: "#f3f3f3",
             marginBottom: 8,
@@ -36,7 +36,7 @@ export default function Details({
           <div>{detail.notes || "N/A"}</div>
           <button
             className={"bg-pink-500 add-remove-button"}
-            onClick={() => removeJobDetails(idx)}
+            onClick={() => removeJobDetails(detail.id)}
           >
             Remove
           </button>
