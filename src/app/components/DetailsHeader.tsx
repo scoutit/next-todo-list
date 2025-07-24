@@ -20,14 +20,13 @@ export default function DetailsHeader({
   return (
     <>
       <h1 className={"title-header"}>Job Applications</h1>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+      <div style={{ display: "flex", gap: 4, marginBottom: 14 }}>
         <input
           value={inputJobDetails.company}
           onChange={(e) =>
             setInputJobDetails({ ...inputJobDetails, company: e.target.value })
           }
           placeholder="Company"
-          style={{ flex: 1, padding: 8 }}
         />
         <input
           value={inputJobDetails.url}
@@ -35,7 +34,7 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, url: e.target.value })
           }
           placeholder="URL"
-          style={{ flex: 1, padding: 8 }}
+          style={{ flex: 1 }}
         />
         <input
           value={inputJobDetails.position}
@@ -43,7 +42,6 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, position: e.target.value })
           }
           placeholder="Position"
-          style={{ flex: 1, padding: 8 }}
         />
         <input
           value={inputJobDetails.dateApplied}
@@ -54,7 +52,7 @@ export default function DetailsHeader({
             })
           }
           placeholder="Date Applied"
-          style={{ flex: 1, padding: 8 }}
+          style={{ width: 100 }}
         />
         <input
           value={inputJobDetails.notes}
@@ -65,7 +63,6 @@ export default function DetailsHeader({
             })
           }
           placeholder="Notes"
-          style={{ flex: 1, padding: 8 }}
         />
         <button
           className={"bg-blue-500 add-remove-button"}
