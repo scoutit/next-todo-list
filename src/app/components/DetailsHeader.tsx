@@ -68,6 +68,9 @@ export default function DetailsHeader({
           className={"bg-blue-500 add-remove-button"}
           onClick={addJobDetails}
           disabled={!canAddJobDetail}
+          style={{
+            cursor: canAddJobDetail ? "pointer" : "not-allowed",
+          }}
         >
           Add
         </button>
