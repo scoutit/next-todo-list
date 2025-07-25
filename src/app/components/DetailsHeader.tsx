@@ -44,6 +44,17 @@ export default function DetailsHeader({
           placeholder="Position"
         />
         <input
+          value={inputJobDetails.salary}
+          onChange={(e) =>
+            setInputJobDetails({
+              ...inputJobDetails,
+              salary: e.target.value,
+            })
+          }
+          placeholder="Salary"
+          style={{ width: 80 }}
+        />
+        <input
           value={inputJobDetails.dateApplied}
           onChange={(e) =>
             setInputJobDetails({

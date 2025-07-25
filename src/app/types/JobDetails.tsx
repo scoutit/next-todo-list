@@ -4,6 +4,7 @@ export type JobDetails = {
   company: string;
   url: string;
   position: string;
+  salary: string;
   dateApplied: string;
   notes: string;
 };

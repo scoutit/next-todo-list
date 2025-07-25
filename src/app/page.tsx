@@ -21,6 +21,7 @@ export default function Home() {
     company: "",
     url: "",
     position: "",
+    salary: "",
     dateApplied: "",
     notes: "",
   });
@@ -76,6 +77,7 @@ export default function Home() {
       company: "",
       url: "",
       position: "",
+      salary: "",
       dateApplied: "",
       notes: "",
     });
@@ -88,7 +90,7 @@ export default function Home() {
   return (
     <main
       style={{
-        maxWidth: activeTab === "tab1" ? 500 : 950,
+        maxWidth: activeTab === "tab1" ? 570 : 1020,
         margin: "40px auto",
         fontFamily: "sans-serif",
         background: "#b09494ff",

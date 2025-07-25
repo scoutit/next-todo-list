@@ -45,6 +45,7 @@ export default function Details({
           <div style={{ width: "300px", wordBreak: "break-word" }}>
             {detail.position}
           </div>
+          <div>{detail.salary}</div>
           <div>{detail.dateApplied}</div>
           <div>{detail.notes}</div>
           <button
