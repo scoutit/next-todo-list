@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import type { JobDetails } from "../types/JobDetails";
 
 type DetailsProperties = {
@@ -28,11 +29,22 @@ export default function Details({
             border: "1px solid #ccc",
             boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
             width: "100%",
+            fontSize: "0.9em",
           }}
         >
           <div>{detail.company}</div>
-          <div>{detail.url || "N/A"}</div>
-          <div>{detail.position}</div>
+          <div
+            style={{
+              maxWidth: "230px",
+              overflow: "hidden",
+              color: "#001affff",
+            }}
+          >
+            <Link href={detail.url}>{detail.url}</Link>
+          </div>
+          <div style={{ width: "300px", wordBreak: "break-word" }}>
+            {detail.position}
+          </div>
           <div>{detail.dateApplied}</div>
           <div>{detail.notes}</div>
           <button
