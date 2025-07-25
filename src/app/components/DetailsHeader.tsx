@@ -21,6 +21,13 @@ export default function DetailsHeader({
     inputJobDetails.position.trim() !== "" &&
     inputJobDetails.dateApplied.trim() !== "";
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && canAddJobDetail) {
+      e.preventDefault();
+      isEditing ? editJobDetails(inputJobDetails.id) : addJobDetails();
+    }
+  };
+
   return (
     <>
       <h1 className={"title-header"}>These Are My Job Applications</h1>
@@ -41,6 +48,7 @@ export default function DetailsHeader({
           }
           placeholder="URL"
           style={{ flex: 1 }}
+          onKeyDown={handleKeyDown}
         />
         <input
           value={inputJobDetails.position}
@@ -50,6 +58,7 @@ export default function DetailsHeader({
           placeholder="Position"
           style={{ color: isEditing ? "#6d6d6dff" : "initial" }}
           disabled={isEditing}
+          onKeyDown={handleKeyDown}
         />
         <input
           value={inputJobDetails.salary}
@@ -61,6 +70,7 @@ export default function DetailsHeader({
           }
           placeholder="Salary"
           style={{ width: 80 }}
+          onKeyDown={handleKeyDown}
         />
         <input
           value={inputJobDetails.dateApplied}
@@ -73,6 +83,7 @@ export default function DetailsHeader({
           placeholder="Date Applied"
           style={{ width: 100, color: isEditing ? "#6d6d6dff" : "initial" }}
           disabled={isEditing}
+          onKeyDown={handleKeyDown}
         />
         <input
           value={inputJobDetails.notes}
@@ -83,6 +94,7 @@ export default function DetailsHeader({
             })
           }
           placeholder="Notes"
+          onKeyDown={handleKeyDown}
         />
         <button
           className={"bg-blue-500 add-remove-button"}
@@ -93,6 +105,7 @@ export default function DetailsHeader({
           style={{
             cursor: canAddJobDetail ? "pointer" : "not-allowed",
           }}
+          onKeyDown={handleKeyDown}
         >
           {isEditing ? `Save` : `Add`}
         </button>
