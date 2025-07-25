@@ -5,11 +5,13 @@ import type { JobDetails } from "../types/JobDetails";
 type DetailsProperties = {
   jobDetails: JobDetails[];
   removeJobDetails: (id: string) => void;
+  handleClickEditJobDetails: (detailsId: string) => void;
 };
 
 export default function Details({
   jobDetails,
   removeJobDetails,
+  handleClickEditJobDetails,
 }: DetailsProperties) {
   return (
     <ul style={{ listStyle: "none", padding: 0 }}>
@@ -55,12 +57,21 @@ export default function Details({
           >
             {detail.notes}
           </div>
-          <button
-            className={"bg-pink-500 add-remove-button"}
-            onClick={() => removeJobDetails(detail.id)}
-          >
-            Remove
-          </button>
+          <div>
+            <button
+              className={"bg-cyan-500 add-remove-button"}
+              style={{ marginRight: 5 }}
+              onClick={() => handleClickEditJobDetails(detail.id)}
+            >
+              Edit
+            </button>
+            <button
+              className={"bg-pink-500 add-remove-button"}
+              onClick={() => removeJobDetails(detail.id)}
+            >
+              Remove
+            </button>
+          </div>
         </li>
       ))}
     </ul>

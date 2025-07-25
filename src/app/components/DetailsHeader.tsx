@@ -3,14 +3,18 @@ import type { JobDetails } from "../types/JobDetails";
 
 type DetailsHeaderProps = {
   inputJobDetails: JobDetails;
+  isEditing: boolean;
   setInputJobDetails: (val: JobDetails) => void;
   addJobDetails: () => void;
+  editJobDetails: (id: string) => void;
 };
 
 export default function DetailsHeader({
   inputJobDetails,
+  isEditing,
   setInputJobDetails,
   addJobDetails,
+  editJobDetails,
 }: DetailsHeaderProps) {
   const canAddJobDetail =
     inputJobDetails.company.trim() !== "" &&
@@ -27,6 +31,8 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, company: e.target.value })
           }
           placeholder="Company"
+          style={{ color: isEditing ? "#6d6d6dff" : "initial" }}
+          disabled={isEditing}
         />
         <input
           value={inputJobDetails.url}
@@ -42,6 +48,8 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, position: e.target.value })
           }
           placeholder="Position"
+          style={{ color: isEditing ? "#6d6d6dff" : "initial" }}
+          disabled={isEditing}
         />
         <input
           value={inputJobDetails.salary}
@@ -63,7 +71,8 @@ export default function DetailsHeader({
             })
           }
           placeholder="Date Applied"
-          style={{ width: 100 }}
+          style={{ width: 100, color: isEditing ? "#6d6d6dff" : "initial" }}
+          disabled={isEditing}
         />
         <input
           value={inputJobDetails.notes}
@@ -77,13 +86,15 @@ export default function DetailsHeader({
         />
         <button
           className={"bg-blue-500 add-remove-button"}
-          onClick={addJobDetails}
+          onClick={
+            isEditing ? () => editJobDetails(inputJobDetails.id) : addJobDetails
+          }
           disabled={!canAddJobDetail}
           style={{
             cursor: canAddJobDetail ? "pointer" : "not-allowed",
           }}
         >
-          Add
+          {isEditing ? `Save` : `Add`}
         </button>
       </div>
     </>

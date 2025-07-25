@@ -11,20 +11,24 @@ type Todo = {
   done: boolean;
 };
 
+const DEFAULT_JOB_DETAILS: JobDetails = {
+  id: "",
+  company: "",
+  url: "",
+  position: "",
+  salary: "",
+  dateApplied: "",
+  notes: "",
+};
+
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [input, setInput] = useState("");
   const [activeTab, setActiveTab] = useState("tab1");
+  const [isEditing, setIsEditing] = useState(false);
   const [jobDetails, setJobDetails] = useState<JobDetails[]>([]);
-  const [inputJobDetails, setInputJobDetails] = useState<JobDetails>({
-    id: "",
-    company: "",
-    url: "",
-    position: "",
-    salary: "",
-    dateApplied: "",
-    notes: "",
-  });
+  const [inputJobDetails, setInputJobDetails] =
+    useState<JobDetails>(DEFAULT_JOB_DETAILS);
 
   useEffect(() => {
     let saved = localStorage.getItem("todos");
@@ -72,19 +76,32 @@ export default function Home() {
       "-" +
       Date.now();
     setJobDetails([...jobDetails, { ...inputJobDetails, id: newId }]);
-    setInputJobDetails({
-      id: "",
-      company: "",
-      url: "",
-      position: "",
-      salary: "",
-      dateApplied: "",
-      notes: "",
-    });
+    setInputJobDetails(DEFAULT_JOB_DETAILS);
   };
 
   const removeJobDetails = (id: string) => {
+    if (isEditing) return;
     setJobDetails(jobDetails.filter((_) => _.id !== id));
+  };
+
+  const editJobDetails = (id: string) => {
+    if (!isEditing) return;
+    setJobDetails(
+      jobDetails.map((details) =>
+        details.id === id ? { ...details, ...inputJobDetails } : details
+      )
+    );
+    setInputJobDetails(DEFAULT_JOB_DETAILS);
+    setIsEditing(false);
+  };
+
+  const handleClickEditJobDetails = (id: string) => {
+    if (activeTab !== "tab2") return;
+    const details = jobDetails.find((_) => _.id === id);
+    if (details) {
+      setInputJobDetails(details);
+      setIsEditing(true);
+    }
   };
 
   return (
@@ -154,6 +171,8 @@ export default function Home() {
               inputJobDetails={inputJobDetails}
               setInputJobDetails={setInputJobDetails}
               addJobDetails={addJobDetails}
+              isEditing={isEditing}
+              editJobDetails={editJobDetails}
             />
             {jobDetails.length === 0 ? (
               <p style={{ textAlign: "center", color: "#888" }}>
@@ -163,6 +182,7 @@ export default function Home() {
               <Details
                 jobDetails={jobDetails}
                 removeJobDetails={removeJobDetails}
+                handleClickEditJobDetails={handleClickEditJobDetails}
               />
             )}
           </>
