@@ -47,7 +47,14 @@ export default function Details({
           </div>
           <div>{detail.salary}</div>
           <div>{detail.dateApplied}</div>
-          <div>{detail.notes}</div>
+          <div
+            style={{
+              maxWidth: "230px",
+              wordBreak: "break-word",
+            }}
+          >
+            {detail.notes}
+          </div>
           <button
             className={"bg-pink-500 add-remove-button"}
             onClick={() => removeJobDetails(detail.id)}
