@@ -17,6 +17,7 @@ export default function Details({
           key={detail.id}
           style={{
             background: "#f3f3f3",
+            color: "#333333",
             marginBottom: 8,
             padding: 10,
             borderRadius: 4,
@@ -33,7 +34,7 @@ export default function Details({
           <div>{detail.url || "N/A"}</div>
           <div>{detail.position}</div>
           <div>{detail.dateApplied}</div>
-          <div>{detail.notes || "N/A"}</div>
+          <div>{detail.notes}</div>
           <button
             className={"bg-pink-500 add-remove-button"}
             onClick={() => removeJobDetails(detail.id)}

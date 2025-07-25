@@ -19,7 +19,7 @@ export default function DetailsHeader({
 
   return (
     <>
-      <h1 className={"title-header"}>Job Applications</h1>
+      <h1 className={"title-header"}>These Are My Job Applications</h1>
       <div style={{ display: "flex", gap: 4, marginBottom: 14 }}>
         <input
           value={inputJobDetails.company}

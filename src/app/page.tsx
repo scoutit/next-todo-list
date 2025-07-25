@@ -97,14 +97,22 @@ export default function Home() {
       }}
     >
       {/* Tab Buttons */}
-      <div style={{ display: "flex", borderBottom: "1px solid #ccc" }}>
+      <div
+        style={{
+          display: "flex",
+          borderBottom: "1px solid #ccc",
+          color: "#333333",
+        }}
+      >
         <button
           onClick={() => handleTabClick("tab1")}
           style={{
             padding: "10px 20px",
             cursor: "pointer",
             border: "none",
-            background: activeTab === "tab1" ? "#eee" : "white",
+            background: activeTab === "tab1" ? "white" : "#888",
+            fontWeight: activeTab === "tab1" ? "bold" : "normal",
+            fontSize: activeTab === "tab1" ? "1em" : ".8em",
           }}
         >
           To-Do
@@ -115,7 +123,9 @@ export default function Home() {
             padding: "10px 20px",
             cursor: "pointer",
             border: "none",
-            background: activeTab === "tab2" ? "#eee" : "white",
+            background: activeTab === "tab2" ? "white" : "#888",
+            fontWeight: activeTab === "tab2" ? "bold" : "normal",
+            fontSize: activeTab === "tab2" ? "1em" : ".8em",
           }}
         >
           Applications
