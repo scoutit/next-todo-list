@@ -38,7 +38,7 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, company: e.target.value })
           }
           placeholder="Company"
-          style={{ color: isEditing ? "#6d6d6dff" : "initial" }}
+          style={{ width: "120px", color: isEditing ? "#6d6d6dff" : "initial" }}
           disabled={isEditing}
         />
         <input
@@ -47,7 +47,7 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, url: e.target.value })
           }
           placeholder="URL"
-          style={{ flex: 1 }}
+          style={{ width: "210px" }}
           onKeyDown={handleKeyDown}
         />
         <input
@@ -56,7 +56,7 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, position: e.target.value })
           }
           placeholder="Position"
-          style={{ color: isEditing ? "#6d6d6dff" : "initial" }}
+          style={{ width: "250px", color: isEditing ? "#6d6d6dff" : "initial" }}
           disabled={isEditing}
           onKeyDown={handleKeyDown}
         />
@@ -69,7 +69,7 @@ export default function DetailsHeader({
             })
           }
           placeholder="Salary"
-          style={{ width: 80 }}
+          style={{ width: "60px" }}
           onKeyDown={handleKeyDown}
         />
         <input
@@ -81,7 +81,7 @@ export default function DetailsHeader({
             })
           }
           placeholder="Date Applied"
-          style={{ width: 100, color: isEditing ? "#6d6d6dff" : "initial" }}
+          style={{ width: "100px", color: isEditing ? "#6d6d6dff" : "initial" }}
           disabled={isEditing}
           onKeyDown={handleKeyDown}
         />
@@ -95,6 +95,7 @@ export default function DetailsHeader({
           }
           placeholder="Notes"
           onKeyDown={handleKeyDown}
+          style={{ width: "160px" }}
         />
         <button
           className={"bg-blue-500 add-remove-button"}
