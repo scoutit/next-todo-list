@@ -16,57 +16,38 @@ export default function Details({
   return (
     <ul style={{ listStyle: "none", padding: 0 }}>
       {jobDetails.map((detail) => (
-        <li
-          key={detail.id}
-          style={{
-            background: "#f3f3f3",
-            color: "#333333",
-            marginBottom: 8,
-            padding: 10,
-            borderRadius: 4,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            border: "1px solid #ccc",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-            width: "100%",
-            fontSize: "0.9em",
-          }}
-        >
-          <div>{detail.company}</div>
-          <div
-            style={{
-              maxWidth: "230px",
-              overflow: "hidden",
-              color: "#001affff",
-            }}
-          >
-            <Link href={detail.url}>{detail.url}</Link>
+        <li key={detail.id} className="details-list-item">
+          <div className="details-info">
+            <div style={{ width: "100px" }}>{detail.company}</div>
+            <div
+              style={{
+                width: "200px",
+                overflow: "hidden",
+                color: "#001affff",
+              }}
+            >
+              <Link href={detail.url}>{detail.url}</Link>
+            </div>
+            <div style={{ width: "250px", wordBreak: "break-word" }}>
+              {detail.position}
+            </div>
+            <div style={{ width: "60px" }}>{detail.salary}</div>
+            <div style={{ width: "60px" }}>{detail.dateApplied}</div>
+            <div style={{ width: "90px", wordBreak: "break-word" }}>
+              {detail.notes}
+            </div>
           </div>
-          <div style={{ width: "300px", wordBreak: "break-word" }}>
-            {detail.position}
-          </div>
-          <div>{detail.salary}</div>
-          <div>{detail.dateApplied}</div>
-          <div
-            style={{
-              maxWidth: "230px",
-              wordBreak: "break-word",
-            }}
-          >
-            {detail.notes}
-          </div>
-          <div>
+          <div className="details-actions">
             <button
               className={"bg-cyan-500 add-remove-button"}
-              style={{ marginRight: 5 }}
+              style={{ marginRight: 5, cursor: "pointer" }}
               onClick={() => handleClickEditJobDetails(detail.id)}
             >
               Edit
             </button>
             <button
               className={"bg-pink-500 add-remove-button"}
+              style={{ cursor: "pointer" }}
               onClick={() => removeJobDetails(detail.id)}
             >
               Remove

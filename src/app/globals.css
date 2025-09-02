@@ -39,5 +39,35 @@ body {
 .add-remove-button {
   padding: 4px 6px;
   border-radius: 10px;
-  font-size: .9em;
+  font-size: 0.7em;
+}
+
+.details-list-item {
+  background: #f3f3f3;
+  color: #333333;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.details-info {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.details-actions {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
 }
