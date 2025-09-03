@@ -71,3 +71,8 @@ body {
   align-items: center;
   margin-left: 16px;
 }
+
+.details-done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
