@@ -171,6 +171,7 @@ export default function Home() {
               todos={todos}
               toggleTodo={toggleTodo}
               removeTodo={removeTodo}
+              onReorder={setTodos}
             />
           </>
         )}
