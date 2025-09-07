@@ -193,6 +193,7 @@ export default function Home() {
                 removeJobDetails={removeJobDetails}
                 handleClickEditJobDetails={handleClickEditJobDetails}
                 handleClickDoneJobDetails={toggleJobDetailsDone}
+                onReorder={setJobDetails}
               />
             )}
           </>
