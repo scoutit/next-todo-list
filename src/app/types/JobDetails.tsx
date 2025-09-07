@@ -7,4 +7,5 @@ export type JobDetails = {
   salary: string;
   dateApplied: string;
   notes: string;
+  done: boolean;
 };

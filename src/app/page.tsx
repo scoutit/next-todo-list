@@ -19,6 +19,7 @@ const DEFAULT_JOB_DETAILS: JobDetails = {
   salary: "",
   dateApplied: "",
   notes: "",
+  done: false,
 };
 
 export default function Home() {
@@ -82,6 +83,14 @@ export default function Home() {
   const removeJobDetails = (id: string) => {
     if (isEditing) return;
     setJobDetails(jobDetails.filter((_) => _.id !== id));
+  };
+
+  const toggleJobDetailsDone = (id: string) => {
+    setJobDetails(
+      jobDetails.map((details) =>
+        details.id === id ? { ...details, done: !details.done } : details
+      )
+    );
   };
 
   const editJobDetails = (id: string) => {
@@ -183,6 +192,7 @@ export default function Home() {
                 jobDetails={jobDetails}
                 removeJobDetails={removeJobDetails}
                 handleClickEditJobDetails={handleClickEditJobDetails}
+                handleClickDoneJobDetails={toggleJobDetailsDone}
               />
             )}
           </>

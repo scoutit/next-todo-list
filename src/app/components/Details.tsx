@@ -6,30 +6,23 @@ type DetailsProperties = {
   jobDetails: JobDetails[];
   removeJobDetails: (id: string) => void;
   handleClickEditJobDetails: (detailsId: string) => void;
-};
-
-type DoneState = {
-  [id: string]: boolean;
+  handleClickDoneJobDetails: (id: string) => void;
 };
 
 export default function Details({
   jobDetails,
   removeJobDetails,
   handleClickEditJobDetails,
+  handleClickDoneJobDetails,
 }: DetailsProperties) {
-  const [doneState, setDoneState] = React.useState<DoneState>({});
-
-  const handleDone = (id: string) => {
-    setDoneState((prev) => ({ ...prev, [id]: true }));
-  };
-
   return (
     <ul style={{ listStyle: "none", padding: 0 }}>
       {jobDetails.map((detail) => {
-        const isDone = doneState[detail.id];
         return (
           <li key={detail.id} className="details-list-item">
-            <div className={`details-info${isDone ? " details-done" : ""}`}>
+            <div
+              className={`details-info${detail.done ? " details-done" : ""}`}
+            >
               <div style={{ width: "90px" }}>{detail.company}</div>
               <div
                 style={{
@@ -54,10 +47,10 @@ export default function Details({
                 className={"bg-green-500 add-remove-button"}
                 style={{
                   marginRight: 5,
-                  cursor: isDone ? "not-allowed" : "pointer",
+                  cursor: detail.done ? "not-allowed" : "pointer",
                 }}
-                onClick={() => handleDone(detail.id)}
-                disabled={isDone}
+                onClick={() => handleClickDoneJobDetails(detail.id)}
+                disabled={detail.done}
               >
                 Done
               </button>
@@ -65,10 +58,10 @@ export default function Details({
                 className={"bg-cyan-500 add-remove-button"}
                 style={{
                   marginRight: 5,
-                  cursor: isDone ? "not-allowed" : "pointer",
+                  cursor: detail.done ? "not-allowed" : "pointer",
                 }}
                 onClick={() => handleClickEditJobDetails(detail.id)}
-                disabled={isDone}
+                disabled={detail.done}
               >
                 Edit
               </button>
