@@ -6,6 +6,24 @@ import DetailsHeader from "./components/DetailsHeader";
 import Details from "./components/Details";
 import type { JobDetails } from "./types/JobDetails";
 
+// Helper to send localStorage data to server
+async function saveLocalDataToServer(todos: any, jobDetails: any) {
+  try {
+    const res = await fetch("/api/save-todo-data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        todos,
+        jobDetails,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+    return await res.json();
+  } catch (e) {
+    // Optionally handle error
+  }
+}
+
 type Todo = {
   text: string;
   done: boolean;
@@ -32,12 +50,47 @@ export default function Home() {
     useState<JobDetails>(DEFAULT_JOB_DETAILS);
 
   useEffect(() => {
-    let saved = localStorage.getItem("todos");
-    if (saved) setTodos(JSON.parse(saved));
+    let savedTodos = localStorage.getItem("todos");
+    let savedJobDetails = localStorage.getItem("jobDetails");
+    let hasTodos = savedTodos && savedTodos !== "[]";
+    let hasJobDetails = savedJobDetails && savedJobDetails !== "[]";
 
-    saved = null;
-    saved = localStorage.getItem("jobDetails");
-    if (saved) setJobDetails(JSON.parse(saved));
+    if (hasTodos) setTodos(JSON.parse(savedTodos!));
+    if (hasJobDetails) setJobDetails(JSON.parse(savedJobDetails!));
+
+    if (!hasTodos && !hasJobDetails) {
+      // If neither has data, try to fetch from server
+      fetch("/api/get-latest-todo-data")
+        .then((res) => (res.ok ? res.json() : null))
+        .then((result) => {
+          if (result && result.success && result.data) {
+            if (result.data.todos && Array.isArray(result.data.todos)) {
+              setTodos(result.data.todos);
+              localStorage.setItem("todos", JSON.stringify(result.data.todos));
+            }
+            if (
+              result.data.jobDetails &&
+              Array.isArray(result.data.jobDetails)
+            ) {
+              setJobDetails(result.data.jobDetails);
+              localStorage.setItem(
+                "jobDetails",
+                JSON.stringify(result.data.jobDetails)
+              );
+            }
+          }
+        })
+        .catch(() => {});
+    } else {
+      // If localStorage has any data, send to server for saving
+      let todos = [];
+      let jobDetails = [];
+      try {
+        todos = savedTodos ? JSON.parse(savedTodos) : [];
+        jobDetails = savedJobDetails ? JSON.parse(savedJobDetails) : [];
+      } catch {}
+      saveLocalDataToServer(todos, jobDetails);
+    }
   }, []);
 
   useEffect(() => {
