@@ -108,6 +108,7 @@ export default function Home() {
   const addTodo = () => {
     if (!input.trim()) return;
     setTodos([...todos, { text: input, done: false }]);
+    saveLocalDataToServer(todos, jobDetails);
     setInput("");
   };
 
@@ -115,10 +116,12 @@ export default function Home() {
     setTodos(
       todos.map((todo, i) => (i === idx ? { ...todo, done: !todo.done } : todo))
     );
+    saveLocalDataToServer(todos, jobDetails);
   };
 
   const removeTodo = (idx: number) => {
     setTodos(todos.filter((_, i) => i !== idx));
+    saveLocalDataToServer(todos, jobDetails);
   };
 
   const addJobDetails = () => {
@@ -133,12 +136,14 @@ export default function Home() {
       "-" +
       Date.now();
     setJobDetails([...jobDetails, { ...inputJobDetails, id: newId }]);
+    saveLocalDataToServer(todos, jobDetails);
     setInputJobDetails(DEFAULT_JOB_DETAILS);
   };
 
   const removeJobDetails = (id: string) => {
     if (isEditing) return;
     setJobDetails(jobDetails.filter((_) => _.id !== id));
+    saveLocalDataToServer(todos, jobDetails);
   };
 
   const toggleJobDetailsDone = (id: string) => {
@@ -147,6 +152,7 @@ export default function Home() {
         details.id === id ? { ...details, done: !details.done } : details
       )
     );
+    saveLocalDataToServer(todos, jobDetails);
   };
 
   const editJobDetails = (id: string) => {
@@ -156,6 +162,7 @@ export default function Home() {
         details.id === id ? { ...details, ...inputJobDetails } : details
       )
     );
+    saveLocalDataToServer(todos, jobDetails);
     setInputJobDetails(DEFAULT_JOB_DETAILS);
     setIsEditing(false);
   };
