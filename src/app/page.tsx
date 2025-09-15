@@ -95,8 +95,11 @@ export default function Home() {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
     localStorage.setItem("jobDetails", JSON.stringify(jobDetails));
-  }, [todos, jobDetails]);
+  }, [jobDetails]);
 
   const handleTabClick = (tabId: string) => {
     setActiveTab(tabId);
