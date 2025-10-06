@@ -48,6 +48,13 @@ export default function Home() {
   const [jobDetails, setJobDetails] = useState<JobDetails[]>([]);
   const [inputJobDetails, setInputJobDetails] =
     useState<JobDetails>(DEFAULT_JOB_DETAILS);
+  const [totalJobs, setTotalJobs] = useState(0);
+  const [activeJobs, setActiveJobs] = useState(0);
+
+  useEffect(() => {
+    setTotalJobs(jobDetails.length);
+    setActiveJobs(jobDetails.filter((job) => !job.done).length);
+  }, [jobDetails]);
 
   useEffect(() => {
     let savedTodos = localStorage.getItem("todos");
@@ -254,6 +261,7 @@ export default function Home() {
             ) : (
               <Details
                 jobDetails={jobDetails}
+                jobCounts={{ totalJobs, activeJobs }}
                 removeJobDetails={removeJobDetails}
                 handleClickEditJobDetails={handleClickEditJobDetails}
                 handleClickDoneJobDetails={toggleJobDetailsDone}
