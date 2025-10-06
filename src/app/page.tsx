@@ -52,11 +52,6 @@ export default function Home() {
   const [activeJobs, setActiveJobs] = useState(0);
 
   useEffect(() => {
-    setTotalJobs(jobDetails.length);
-    setActiveJobs(jobDetails.filter((job) => !job.done).length);
-  }, [jobDetails]);
-
-  useEffect(() => {
     let savedTodos = localStorage.getItem("todos");
     let savedJobDetails = localStorage.getItem("jobDetails");
     let hasTodos = savedTodos && savedTodos !== "[]";
@@ -106,6 +101,9 @@ export default function Home() {
 
   useEffect(() => {
     localStorage.setItem("jobDetails", JSON.stringify(jobDetails));
+
+    setTotalJobs(jobDetails.length);
+    setActiveJobs(jobDetails.filter((job) => !job.done).length);
   }, [jobDetails]);
 
   const handleTabClick = (tabId: string) => {
