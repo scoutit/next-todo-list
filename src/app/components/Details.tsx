@@ -107,12 +107,26 @@ export default function Details({
                           {detail.notes}
                         </div>
                       </div>
-                      <div className="details-actions">
+                      <div
+                        id="buttonPill"
+                        className="details-actions"
+                        style={{
+                          display: "flex",
+                          background: "#f0f0f0",
+                          borderRadius: "20px",
+                          padding: "2px",
+                          width: "fit-content",
+                          overflow: "hidden",
+                        }}
+                      >
                         <button
                           className={"bg-green-500 add-remove-button"}
                           style={{
-                            marginRight: 5,
                             cursor: detail.done ? "not-allowed" : "pointer",
+                            borderRadius: "18px 0 0 18px",
+                            margin: 0,
+                            border: "none",
+                            padding: "4px 6px",
                           }}
                           onClick={() => handleClickDoneJobDetails(detail.id)}
                           disabled={detail.done}
@@ -122,8 +136,13 @@ export default function Details({
                         <button
                           className={"bg-cyan-500 add-remove-button"}
                           style={{
-                            marginRight: 5,
                             cursor: detail.done ? "not-allowed" : "pointer",
+                            borderRadius: 0,
+                            margin: 0,
+                            border: "none",
+                            borderLeft: "1px solid rgba(255,255,255,0.2)",
+                            borderRight: "1px solid rgba(255,255,255,0.2)",
+                            padding: "4px 4px",
                           }}
                           onClick={() => handleClickEditJobDetails(detail.id)}
                           disabled={detail.done}
@@ -132,7 +151,13 @@ export default function Details({
                         </button>
                         <button
                           className={"bg-pink-500 add-remove-button"}
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: "pointer",
+                            borderRadius: "0 18px 18px 0",
+                            margin: 0,
+                            border: "none",
+                            padding: "4px 6px",
+                          }}
                           onClick={() => removeJobDetails(detail.id)}
                         >
                           Remove
