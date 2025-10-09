@@ -112,7 +112,7 @@ export default function Home() {
 
   const addTodo = () => {
     if (!input.trim()) return;
-    setTodos([...todos, { text: input, done: false }]);
+    setTodos([{ text: input, done: false }, ...todos]);
     saveLocalDataToServer(todos, jobDetails);
     setInput("");
   };
@@ -140,7 +140,7 @@ export default function Home() {
       inputJobDetails.dateApplied.trim().toLowerCase().replace(/\s+/g, "-") +
       "-" +
       Date.now();
-    setJobDetails([...jobDetails, { ...inputJobDetails, id: newId }]);
+    setJobDetails([{ ...inputJobDetails, id: newId }, ...jobDetails]);
     saveLocalDataToServer(todos, jobDetails);
     setInputJobDetails(DEFAULT_JOB_DETAILS);
   };
