@@ -47,7 +47,7 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, url: e.target.value })
           }
           placeholder="URL"
-          style={{ width: "210px" }}
+          style={{ width: "250px" }}
           onKeyDown={handleKeyDown}
         />
         <input
@@ -56,7 +56,7 @@ export default function DetailsHeader({
             setInputJobDetails({ ...inputJobDetails, position: e.target.value })
           }
           placeholder="Position"
-          style={{ width: "250px", color: isEditing ? "#6d6d6dff" : "initial" }}
+          style={{ width: "335px", color: isEditing ? "#6d6d6dff" : "initial" }}
           disabled={isEditing}
           onKeyDown={handleKeyDown}
         />
@@ -95,7 +95,7 @@ export default function DetailsHeader({
           }
           placeholder="Notes"
           onKeyDown={handleKeyDown}
-          style={{ width: "160px" }}
+          style={{ width: "260px" }}
         />
         <button
           className={"bg-blue-500 add-remove-button"}
