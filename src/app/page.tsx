@@ -184,7 +184,7 @@ export default function Home() {
   return (
     <main
       style={{
-        maxWidth: activeTab === "tab1" ? 570 : 1020,
+        maxWidth: activeTab === "tab1" ? 570 : 1270,
         margin: "40px auto",
         fontFamily: "sans-serif",
         background: "#b09494ff",

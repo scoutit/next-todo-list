@@ -87,7 +87,7 @@ export default function Details({
                         <div style={{ width: "90px" }}>{detail.company}</div>
                         <div
                           style={{
-                            width: "200px",
+                            width: "250px",
                             overflow: "hidden",
                             color: "#001affff",
                           }}
@@ -111,7 +111,7 @@ export default function Details({
                           </Link>
                         </div>
                         <div
-                          style={{ width: "245px", wordBreak: "break-word" }}
+                          style={{ width: "345px", wordBreak: "break-word" }}
                         >
                           {detail.position}
                         </div>
@@ -119,7 +119,9 @@ export default function Details({
                         <div style={{ width: "55px" }}>
                           {detail.dateApplied}
                         </div>
-                        <div style={{ width: "85px", wordBreak: "break-word" }}>
+                        <div
+                          style={{ width: "185px", wordBreak: "break-word" }}
+                        >
                           {detail.notes}
                         </div>
                       </div>
