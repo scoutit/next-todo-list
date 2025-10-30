@@ -92,7 +92,23 @@ export default function Details({
                             color: "#001affff",
                           }}
                         >
-                          <Link href={detail.url}>{detail.url}</Link>
+                          <Link
+                            href={detail.url}
+                            title={detail.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: "inline-block",
+                              maxWidth: "100%",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              color: "#001affff",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            {detail.url}
+                          </Link>
                         </div>
                         <div
                           style={{ width: "245px", wordBreak: "break-word" }}
