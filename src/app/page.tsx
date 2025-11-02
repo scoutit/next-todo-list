@@ -209,6 +209,7 @@ export default function Home() {
             background: activeTab === "tab1" ? "white" : "#888",
             fontWeight: activeTab === "tab1" ? "bold" : "normal",
             fontSize: activeTab === "tab1" ? "1em" : ".8em",
+            borderTopLeftRadius: 8,
           }}
         >
           To-Do
@@ -222,6 +223,7 @@ export default function Home() {
             background: activeTab === "tab2" ? "white" : "#888",
             fontWeight: activeTab === "tab2" ? "bold" : "normal",
             fontSize: activeTab === "tab2" ? "1em" : ".8em",
+            borderTopRightRadius: 8,
           }}
         >
           Applications
