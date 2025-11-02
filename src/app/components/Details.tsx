@@ -84,7 +84,7 @@ export default function Details({
                           detail.done ? " details-done" : ""
                         }`}
                       >
-                        <div style={{ width: "90px" }}>{detail.company}</div>
+                        <div style={{ width: "100px" }}>{detail.company}</div>
                         <div
                           style={{
                             width: "250px",
@@ -116,11 +116,11 @@ export default function Details({
                           {detail.position}
                         </div>
                         <div style={{ width: "60px" }}>{detail.salary}</div>
-                        <div style={{ width: "55px" }}>
+                        <div style={{ width: "50px" }}>
                           {detail.dateApplied}
                         </div>
                         <div
-                          style={{ width: "185px", wordBreak: "break-word" }}
+                          style={{ width: "180px", wordBreak: "break-word" }}
                         >
                           {detail.notes}
                         </div>
