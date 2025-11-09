@@ -152,11 +152,27 @@ export default function Home() {
   };
 
   const toggleJobDetailsDone = (id: string) => {
-    setJobDetails(
-      jobDetails.map((details) =>
-        details.id === id ? { ...details, done: !details.done } : details
-      )
+    const updatedDetails = jobDetails.map((details) =>
+      details.id === id ? { ...details, done: !details.done } : details
     );
+
+    // If the item is being marked as done, move it to the bottom of the done items
+    const targetDetail = updatedDetails.find((detail) => detail.id === id);
+    if (targetDetail && targetDetail.done) {
+      // Remove the item from its current position
+      const [itemToMove] = updatedDetails.splice(
+        updatedDetails.findIndex((d) => d.id === id),
+        1
+      );
+      // Find the first done item's index
+      const firstDoneIndex = updatedDetails.findIndex((detail) => detail.done);
+      // Insert it before the first done item, or at the end if no other done items
+      const insertIndex =
+        firstDoneIndex === -1 ? updatedDetails.length : firstDoneIndex - 1;
+      updatedDetails.splice(insertIndex, 0, itemToMove);
+    }
+
+    setJobDetails(updatedDetails);
     saveLocalDataToServer(todos, jobDetails);
   };
 
