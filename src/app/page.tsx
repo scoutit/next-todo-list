@@ -168,7 +168,7 @@ export default function Home() {
       const firstDoneIndex = updatedDetails.findIndex((detail) => detail.done);
       // Insert it before the first done item, or at the end if no other done items
       const insertIndex =
-        firstDoneIndex === -1 ? updatedDetails.length : firstDoneIndex - 1;
+        firstDoneIndex === -1 ? updatedDetails.length : firstDoneIndex;
       updatedDetails.splice(insertIndex, 0, itemToMove);
     }
 
