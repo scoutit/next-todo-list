@@ -65,15 +65,15 @@ export default function Details({
                 >
                   {(
                     provided: DraggableProvided,
-                    snapshot: DraggableStateSnapshot
+                    snapshot: DraggableStateSnapshot,
                   ) => (
                     <li
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       className={`details-list-item${
-                        snapshot.isDragging ? " dragging" : ""
-                      }`}
+                        detail.done ? " details-list-item--done" : ""
+                      }${snapshot.isDragging ? " dragging" : ""}`}
                       style={{
                         ...provided.draggableProps.style,
                         background: snapshot.isDragging ? "#e0e7ff" : undefined,

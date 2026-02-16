@@ -58,6 +58,10 @@ body {
   font-size: 0.9em;
 }
 
+.details-list-item--done {
+  background: #bbbbbb;
+}
+
 .details-info {
   display: flex;
   flex: 1;
